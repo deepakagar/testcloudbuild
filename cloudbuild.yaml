@@ -1,10 +1,19 @@
 steps:
-  - id: 'terraform init '
-    name: 'hashicorp/terraform:1.0.0'
-    script: terraform init
-  - id: 'terraform plan'
-    name: 'hashicorp/terraform:1.0.0'
-    script: terraform plan
-  - id: 'terraform apply'
-    name: 'hashicorp/terraform:1.0.0'
-    script: terraform apply --auto-approve
+- id: 'branch name'
+  name: 'alpine'
+  entrypoint: 'sh'  
+  args: 
+  - '-c'
+  - | 
+      echo "***********************"
+      echo "$BRANCH_NAME"
+      echo "***********************"
+- id: 'terraform init '
+  name: 'hashicorp/terraform:1.0.0'
+  script: terraform init
+- id: 'terraform plan'
+  name: 'hashicorp/terraform:1.0.0'
+  script: terraform plan
+- id: 'terraform apply'
+  name: 'hashicorp/terraform:1.0.0'
+  script: terraform apply --auto-approve
